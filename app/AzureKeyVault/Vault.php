@@ -11,7 +11,7 @@ class Vault
 
     public function __construct(string $vault) {
         $this->vault = $vault;
-        $this->$azureSecret = new Secret("https://{$vault}.vault.azure.net/");
+        $this->azureSecret = new Secret("https://{$vault}.vault.azure.net/");
     }
 
     private function vaultUrl(): string
@@ -21,7 +21,7 @@ class Vault
 
     public function secret(string $name, ?string $default = null): ?string
     {
-        $result = $this->$azureSecret->getSecret($name);
+        $result = $this->azureSecret->getSecret($name);
         return $result->secret;
     }
 }
